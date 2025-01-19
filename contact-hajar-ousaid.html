@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contactez-Nous</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #030728;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 20px 40px;
+    }
+
+    .card-list .card-item {
+      height: auto;
+      color: #fff;
+      user-select: none;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      backdrop-filter: blur(30px);
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .card-list .card-item .user-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #fff;
+      padding: 4px;
+    }
+
+    .card-list .card-item .user-profession {
+      font-size: 1rem;
+      color: #e3e3e3;
+      font-weight: 500;
+      margin: 10px 0 15px;
+    }
+
+    .card-list .card-item .rating {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .card-list .card-item .rating span {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.5);
+      transition: color 0.2s;
+    }
+
+    .card-list .card-item .rating span:hover,
+    .card-list .card-item .rating span:hover ~ span {
+      color: gold;
+    }
+
+    .card-list .card-item .message-button {
+      font-size: 1rem;
+      padding: 8px 25px;
+      color: #030728;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .card-list .card-item .message-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #fff;
+      color: #fff;
+    }
+
+    .slider-wrapper .swiper-pagination-bullet {
+      background: #fff;
+      height: 10px;
+      width: 10px;
+      opacity: 0.7;
+    }
+
+    .slider-wrapper .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+
+    .slider-wrapper .swiper-slide-button {
+      color: #fff;
+      margin-top: -5px;
+      transition: 0.2s ease;
+    }
+
+    .slider-wrapper .swiper-slide-button:hover {
+      color: #4658ff;
+    }
+
+    @media (max-width: 480px) {
+      .card-list .card-item {
+        padding: 20px;
+      }
+
+      .card-list .card-item .user-profession {
+        font-size: 0.9rem;
+      }
+
+      .card-list .card-item .message-button {
+        font-size: 0.9rem;
+        padding: 6px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container swiper">
+    <a class="logo" href="Hajar-Ousaid-Web.html" style="color: crimson;">Music Hub<span>.</span></a>
+    <div class="slider-wrapper">
+      <div class="card-list swiper-wrapper">
+        
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-slide-button swiper-button-prev"></div>
+      <div class="swiper-slide-button swiper-button-next"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+   
+    const users = [
+      {
+        name: "Anass Benani",
+        profession: "Ingénieur Informatique",
+        img: "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
+      },
+      {
+        name: "Samir El Alami",
+        profession: "Graphic Designer",
+        img: "https://static.vecteezy.com/system/resources/previews/026/408/485/non_2x/man-lifestyle-portrait-hipster-serious-t-shirt-isolated-person-white-background-american-smile-confident-fashion-photo.jpg"
+      },
+      {
+        name: "Sophia Lam",
+        profession: "Web Developer",
+        img: "https://randomuser.me/api/portraits/women/1.jpg"
+      },
+    ];
+
+    const cardList = document.querySelector('.card-list');
+
+   
+    users.forEach(user => {
+      const card = document.createElement('div');
+      card.className = 'card-item swiper-slide';
+      card.innerHTML = `
+        <img src="${user.img}" alt="${user.name}'s image" class="user-image" loading="lazy">
+        <h2 class="user-name">${user.name}</h2>
+        <p class="user-profession">${user.profession}</p>
+        <div class="rating">
+          <span data-value="5">☆</span>
+          <span data-value="4">☆</span>
+          <span data-value="3">☆</span>
+          <span data-value="2">☆</span>
+          <span data-value="1">☆</span>
+        </div>
+        <button class="message-button">Message</button>
+      `;
+      cardList.appendChild(card);
+    });
+
+   
+    const swiper = new Swiper('.slider-wrapper', {
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 30,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+    });
+
+   
+    document.querySelectorAll('.rating').forEach(rating => {
+      rating.addEventListener('click', function (e) {
+        if (e.target.tagName === 'SPAN') {
+          const selectedValue = e.target.getAttribute('data-value');
+          const stars = Array.from(rating.children);
+
+          stars.forEach(star => {
+            star.style.color = star.getAttribute('data-value') <= selectedValue ? 'gold' : 'rgba(255, 255, 255, 0.5)';
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
